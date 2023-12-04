@@ -1,0 +1,23 @@
+lines = open('input.txt', 'r').readlines()
+
+sum = 0
+for line in lines:
+    parts = line.split('|')
+
+    winningNumbers = parts[0].split()[2:]
+    winningNumbers = [int(num) if '.' not in num else float(num) for num in winningNumbers]
+
+    ourNumbers = parts[1].split()
+    ourNumbers = [int(num) if '.' not in num else float(num) for num in ourNumbers]
+
+    amount = 0
+    for n in ourNumbers:
+        if n in winningNumbers:
+            amount += 1
+
+    if sum == 0:
+        sum += 2*amount
+    else:
+        sum += amount
+
+print(f"Answer = {sum}")

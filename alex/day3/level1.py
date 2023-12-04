@@ -9,7 +9,7 @@ def hasSymbolAround(x, y):
     rows, cols = len(lines), len(lines[0])
     for i in range(max(0,x-1), min(cols,x+2)):
         for j in range(max(0,y-1), min(rows,y+2)):
-            if lines[i][j] == '*':
+            if not lines[j][i].isnumeric() and lines[j][i] != '.':
                 return True
     return False
 
@@ -21,16 +21,15 @@ for line in lines:
 
     x = 0
     for c in line:
-        if c == '.':
-            if hasSymbol:
+        hasSymbol = hasSymbol or hasSymbolAround(x, lineIndex)
+        if not c.isnumeric():
+            if hasSymbol and currentNumber.lstrip().isnumeric():
                 sum += int(currentNumber)
             currentNumber = ""
             hasSymbol = False
         else:
-            print(f"{x} - {lineIndex}")
-            hasSymbol = hasSymbol or hasSymbolAround(x, lineIndex)
             currentNumber += c
         x += 1
 
     lineIndex += 1
-print(sum)
+print("Result: " + str(sum))
