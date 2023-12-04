@@ -1,9 +1,7 @@
 datei = open('input.txt', 'r')
 list = datei.readlines()
 temp, sum = 0, 0
-number_of_cards = []
-for i in list:
-    number_of_cards.append(1)
+number_of_cards = [1] * len(list)
 for i in list:
     for j in i.split('|')[1].split(' '):
         if j.strip() in i.split('|')[0].split(':')[1].split(' ') and j.strip().isnumeric():
