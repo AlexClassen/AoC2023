@@ -12,3 +12,4 @@ for i in list:
 for m in number_of_cards:
     sum += m
 print(sum)
+datei.close()
