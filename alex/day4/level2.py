@@ -1,6 +1,8 @@
 lines = open('input.txt', 'r').readlines()
 
 sum = 0
+copies = [1] * len(lines)
+index = 0
 for line in lines:
     parts = line.split('|')
 
@@ -15,7 +17,11 @@ for line in lines:
         if n in winningNumbers:
             amount += 1
 
-    if amount != 0:
-        sum += pow(2, max(0,amount-1))
+    for i in range(index, index+amount):
+        copies[i+1] += copies[index]
 
+    index += 1
+
+for c in copies:
+    sum += c
 print(f"Answer = {sum}")
