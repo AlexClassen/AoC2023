@@ -1,5 +1,5 @@
 def getLines():
-    with open('input.txt', 'r') as file:
+    with open('test.txt', 'r') as file:
         lines = [line.strip() for line in file.readlines()]
     return lines
 
@@ -21,13 +21,14 @@ for line in lines:
 
     x = 0
     for c in line:
-        hasSymbol = hasSymbol or hasSymbolAround(x, lineIndex)
         if not c.isnumeric():
             if hasSymbol and currentNumber.lstrip().isnumeric():
+                print(currentNumber)
                 sum += int(currentNumber)
             currentNumber = ""
             hasSymbol = False
         else:
+            hasSymbol = hasSymbol or hasSymbolAround(x, lineIndex)
             currentNumber += c
         x += 1
 
